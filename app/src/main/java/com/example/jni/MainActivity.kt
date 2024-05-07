@@ -94,7 +94,7 @@ private fun PlayControl(modifier: Modifier, synthesizerViewModel: WavetableSynth
             synthesizerViewModel.playClicked()
         },
         // playButtonLabel will never be null; if it is, then we have a serious implementation issue
-        buttonLabel = "button label")
+        buttonLabel = playButtonLabel.value.toString())
 }
 
 @Composable
@@ -179,7 +179,7 @@ private fun PitchControl(
 
     PitchControlContent(
         modifier = modifier,
-        pitchControlLabel = "frequency",
+        pitchControlLabel = "Frequency",
         value = sliderPosition.value,
         // on slider position change, update the slider position and the ViewModel
         onValueChange = {
@@ -191,7 +191,7 @@ private fun PitchControl(
         valueRange = 0F..1F,
         // this label could be moved into the ViewModel but it doesn't have to be because this
         // composable will anyway be recomposed on a frequency change
-        frequencyValueLabel = "frequency value"
+        frequencyValueLabel = frequency.value.toString()
     )
 }
 
