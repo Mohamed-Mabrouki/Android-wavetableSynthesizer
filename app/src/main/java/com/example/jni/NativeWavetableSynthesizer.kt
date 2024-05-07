@@ -39,7 +39,7 @@ class NativeWavetableSynthesizer : WavetableSynthesizer, DefaultLifecycleObserve
 
     companion object {
         init {
-            System.loadLibrary("wavetablesynthesizer")
+            System.loadLibrary("jni")
         }
     }
 
