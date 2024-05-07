@@ -34,7 +34,13 @@ find_library(
 # used in the AndroidManifest.xml file.
 add_library(${CMAKE_PROJECT_NAME} SHARED
     # List C/C++ source files with relative paths to this CMakeLists.txt.
-    jni.cpp)
+    jni.cpp
+    WavetableSynthesizer.cpp
+
+)
+
+ #will add include folder to the path with includes
+include_directories(include)
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
@@ -43,3 +49,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     # List libraries link to the target library
     android
     log)
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    # List libraries link to the target library
+        ${log-lib})

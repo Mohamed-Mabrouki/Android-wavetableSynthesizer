@@ -22,7 +22,7 @@ Java_com_example_jni_NativeWavetableSynthesizer_create(JNIEnv *env, jobject thiz
     auto synthesizer = std::make_unique<wavetablesynthesizer::WavetableSynthesizer>();
 
     if (not synthesizer) {
-        LOGD("Failed to create the synthesizer")
+        LOGD("Failed to create the synthesizer");
         synthesizer.reset(nullptr);
     }
 
@@ -33,7 +33,7 @@ Java_com_example_jni_NativeWavetableSynthesizer_create(JNIEnv *env, jobject thiz
 JNIEXPORT void JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_delete(JNIEnv *env, jobject thiz,
                                                        jlong synthesizerHandle) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
 
     if (not synthesizer) {
         LOGD("Attemted to destroyan unitialized synthesizer");
@@ -48,9 +48,9 @@ Java_com_example_jni_NativeWavetableSynthesizer_delete(JNIEnv *env, jobject thiz
 JNIEXPORT void JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_play(JNIEnv *env, jobject thiz,
                                                      jlong synthesizerHandle) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
 
-    if(synthesizer){
+    if (synthesizer) {
         synthesizer->play();
     } else {
         LOGD("Synthesizer not created");
@@ -59,9 +59,9 @@ Java_com_example_jni_NativeWavetableSynthesizer_play(JNIEnv *env, jobject thiz,
 JNIEXPORT void JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_stop(JNIEnv *env, jobject thiz,
                                                      jlong synthesizerHandle) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
 
-    if(synthesizer){
+    if (synthesizer) {
         synthesizer->stop();
     } else {
         LOGD("Synthesizer not created");
@@ -71,10 +71,10 @@ Java_com_example_jni_NativeWavetableSynthesizer_stop(JNIEnv *env, jobject thiz,
 JNIEXPORT jboolean JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_isPlaying(JNIEnv *env, jobject thiz,
                                                           jlong synthesizerHandle) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
 
-    if(synthesizer){
-        synthesizer-isPlaying();
+    if (synthesizer) {
+        synthesizer -> isPlaying();
     } else {
         LOGD("Synthesizer not created");
     }
@@ -86,9 +86,9 @@ JNIEXPORT void JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_setFrequency(JNIEnv *env, jobject thiz,
                                                              jlong synthesizerHandle,
                                                              jfloat frequencyInHz) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
 
-    if(synthesizer){
+    if (synthesizer) {
         synthesizer->setFrequency(static_cast<float >(frequencyInHz));
     } else {
         LOGD("Synthesizer not created");
@@ -99,9 +99,9 @@ JNIEXPORT void JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_setVolume(JNIEnv *env, jobject thiz,
                                                           jlong synthesizerHandle,
                                                           jfloat volumeInDb) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
 
-    if(synthesizer){
+    if (synthesizer) {
         synthesizer->setVolume(static_cast<float >(volumeInDb));
     } else {
         LOGD("Synthesizer not created");
@@ -112,10 +112,10 @@ JNIEXPORT void JNICALL
 Java_com_example_jni_NativeWavetableSynthesizer_setWavetable(JNIEnv *env, jobject thiz,
                                                              jlong synthesizerHandle,
                                                              jint wavetable) {
-    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer>(synthesizerHandle);
-    const auto  nativeWavetable = static_cast<wavetablesynthesizer::Wavetable>(wavetable);
+    auto* synthesizer = reinterpret_cast<wavetablesynthesizer::WavetableSynthesizer*>(synthesizerHandle);
+    const auto nativeWavetable = static_cast<wavetablesynthesizer::Wavetable>(wavetable);
 
-    if(synthesizer){
+    if (synthesizer) {
         synthesizer->setWavetable(nativeWavetable);
     } else {
         LOGD("Synthesizer not created");

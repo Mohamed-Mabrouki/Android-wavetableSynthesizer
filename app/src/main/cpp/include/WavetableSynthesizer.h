@@ -9,7 +9,7 @@ namespace wavetablesynthesizer{
     public:
         void play();
         void stop();
-        void isPlaying();
+        bool isPlaying();
         void setFrequency(float frequencyInHz);
         void setVolume(float volumeInDb);
         void setWavetable(Wavetable wavetable);
