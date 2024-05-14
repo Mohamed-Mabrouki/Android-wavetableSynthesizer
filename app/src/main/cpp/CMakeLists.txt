@@ -18,7 +18,6 @@ find_library(
 )
 
 
-
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -33,22 +32,31 @@ find_library(
 # for GameActivity/NativeActivity derived applications, the same library name must be
 # used in the AndroidManifest.xml file.
 add_library(${CMAKE_PROJECT_NAME} SHARED
-    # List C/C++ source files with relative paths to this CMakeLists.txt.
-    jni.cpp
-    WavetableSynthesizer.cpp
+        # List C/C++ source files with relative paths to this CMakeLists.txt.
+        jni.cpp
+        OboeAudioPlayer.cpp
+        WavetableOscillator.cpp
+        WavetableSynthesizer.cpp
 
 )
 
- #will add include folder to the path with includes
+
+#to link to oboe library
+find_package(oboe REQUIRED CONFIG)
+
+target_link_libraries(${CMAKE_PROJECT_NAME})
+
+#will add include folder to the path with includes
 include_directories(include)
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
 # build script, prebuilt third-party libraries, or Android system libraries.
 target_link_libraries(${CMAKE_PROJECT_NAME}
-    # List libraries link to the target library
-    android
-    log)
+        # List libraries link to the target library
+        android
+        log)
 target_link_libraries(${CMAKE_PROJECT_NAME}
-    # List libraries link to the target library
+        # List libraries link to the target library
+        oboe::oboe
         ${log-lib})

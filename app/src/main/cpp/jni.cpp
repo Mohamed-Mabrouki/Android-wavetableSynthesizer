@@ -116,7 +116,7 @@ Java_com_example_jni_NativeWavetableSynthesizer_setWavetable(JNIEnv *env, jobjec
     const auto nativeWavetable = static_cast<wavetablesynthesizer::Wavetable>(wavetable);
 
     if (synthesizer) {
-        synthesizer->setWavetable(nativeWavetable);
+//        synthesizer->setWavetable(nativeWavetable);
     } else {
         LOGD("Synthesizer not created");
     }
