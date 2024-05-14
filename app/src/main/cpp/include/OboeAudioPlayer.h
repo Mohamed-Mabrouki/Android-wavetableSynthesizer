@@ -20,11 +20,9 @@ namespace wavetablesynthesizer {
 
         void stop() override;
 
-        oboe::DataCallback onAudioReady(oboe::AudioStream *audioStream,
-                                        void *audiodata,
-                                        int32_t framesCount
-        ) override;
-
+        oboe::DataCallbackResult onAudioReady(oboe::AudioStream* audioStream,
+                                              void* audioData,
+                                              int32_t framesCount) override;
     private:
         std::shared_ptr<AudioSource> _source;
         std::shared_ptr<oboe::AudioStream> _stream;
